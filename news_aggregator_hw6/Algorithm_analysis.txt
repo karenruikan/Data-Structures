@@ -1,0 +1,58 @@
+/**********************************************************************
+ *  HW6 - News Aggregator
+ *  PROGRAM ANALYSIS
+ *
+ *  For each method below:
+ *    - List the data structure(s) you used. Provide a brief justification
+ *    - Provide its big-O. Provide a brief justification   
+ *    - If you decide to use two variables in your Big-O estimates,
+ *      please describe them. 
+ *    - You can assume that HashMap operations are in O(1).                                             
+ **********************************************************************/
+
+* parseFeed (5 pt):
+- The data structure used are Map<String, List<String>>, because the return type specified. 
+- A nested loop is used, so the big O is O(F * L)
+- F is the number of RSS feed, and L is the number of html links in each feed. 
+
+
+**********************************************************************
+* buildIndex (6 pt):
+- HashMap<String, Map<String, Double>>. This structure is used because I need a map so I build a searchable Index that has the link as the key, and the value is another map. The inside map stores the TF-IDF value of each word. 
+- A 3-level nested loop. O(L * W * W)
+- L is the number of documents, W is the number of words in each document. 
+
+
+
+**********************************************************************
+* buildInvertedIndex (6 pt):
+- Map<String,TreeSet<Entry<String, Double>>>. A map is used on the outside because I need a searchable index that maps terms to their related documents. Inside the map structure, I have a TreeSet because it allows me to sort the Entries by the value. Inside the TreeSet, an Entry data structure was used because it allows me to enter a tuple of (link, value) into the treeSet. 
+- A nested loop. O(L * W)
+- L is the number of links, and W is number of words in each link. 
+
+
+
+**********************************************************************
+* buildHomePage (6 pt):
+- TreeSet<Entry<String, List<String>>>. A TreeSet is used because it allows me to build a structure that can be ordered. Inside the TreeSet are Entries, of each term, and the links associated with them. 
+- A nested loop. O(W * L) 
+- W is the total number of words in the index (including stop words), L is the number of links
+
+
+
+**********************************************************************
+* createAutocompleteFile (6 pt):
+- TreeSet<String>. A TreeSet is used because it lets me compare the words and put them in order, which allows autocomplete.txt to be printed in lexicological order. 
+- A loop. O(W) 
+- W is the number of terms in the home page (stop words are removed). 
+
+
+
+
+**********************************************************************
+* searchArticles (6 pt):
+- List<String>, TreeSet<Entry<String, List<String>>>
+- A loop that has O(W). This method calls the buildHomePage() method, which has run time O(W * L). So the total run time is O(W * L). 
+
+
+**********************************************************************

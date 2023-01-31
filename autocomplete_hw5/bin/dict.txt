@@ -1,0 +1,7 @@
+weight	word
+1	ab
+2	abolish
+3	abate
+4	ability
+5	accuse
+6	be
